@@ -34,3 +34,17 @@ class TeamsAdmin(admin.ModelAdmin):
     
 
 admin.site.register(Teams, TeamsAdmin)
+
+
+class CarAdmin(admin.ModelAdmin):
+    def image_tag(self, obj):
+        return format_html('<img src="{}" width="40" style="border-radius: 50px;"/>'.format(obj.photo.url))
+
+    list_display = ('image_tag', 'car_title', 'city', 'color', 'model', 'if_featured')
+    list_display_links = ('car_title', 'city', 'color', 'model')
+    search_fields = ('car_title', 'color', 'model', 'city', 'engine', 'price', 'year')
+    list_editable = ('if_featured',)
+    list_filter = ('state', 'year', )
+
+
+admin.site.register(Car, CarAdmin)

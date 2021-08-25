@@ -2,6 +2,8 @@ from threading import Condition
 from django.db import models
 import datetime
 from django.db.models.enums import Choices
+from ckeditor.fields import RichTextField
+from multiselectfield import MultiSelectField
 
 from django.utils.regex_helper import Choice
 
@@ -90,7 +92,7 @@ class Car(models.Model):
 
     condition = models.CharField(max_length=20)
     price = models.IntegerField()
-    description = models.TextField()
+    description = RichTextField()
     photo = models.ImageField(upload_to='cars/images/')
 
     features_choices = (
@@ -108,7 +110,7 @@ class Car(models.Model):
         ('Wind Deflector', 'Wind Deflector'),
         ('Bluetooth Handset', 'Bluetooth Handset'),
     )
-    feature = models.CharField(choices=features_choices, max_length=25)
+    feature = MultiSelectField(choices=features_choices)
     body_style = models.CharField(max_length=20)
     engine = models.CharField(max_length=20)
     transmission = models.CharField(max_length=20)
@@ -122,7 +124,7 @@ class Car(models.Model):
         ('5', '5'),
         ('6', '6'),
     )
-    doors = models.IntegerField(choices=door_choices)
+    doors = models.CharField(choices=door_choices, max_length=4)
     passanger = models.IntegerField()
     vehical_no = models.CharField(max_length=30)
     milage = models.IntegerField()
@@ -130,3 +132,6 @@ class Car(models.Model):
     no_of_owners = models.CharField(max_length=10)
     if_featured = models.BooleanField()
     created_date = models.DateTimeField(default=datetime.datetime.now, blank=True, null= True)
+
+    def __str__(self):
+        return self.car_title
