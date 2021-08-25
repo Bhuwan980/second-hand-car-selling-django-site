@@ -1,3 +1,4 @@
+from pages.admin import CarAdmin
 from django.shortcuts import render
 from .models import *
 
@@ -12,6 +13,11 @@ def home(request):
     }
     return render(request, 'pages/home.html',context )
 
+def cardetail(request, id):
+    car = Car.objects.get(pk=id)
+    context={'car':car}
+    return render(request, 'pages/car-details.html', context)
+
 def contact(request):
     return render(request, 'pages/contact.html')
     
@@ -22,4 +28,8 @@ def services(request):
     return render(request, 'pages/services.html')
 
 def car(request):
-    return render(request, 'pages/cars.html')
+    cars = Car.objects.order_by('-created_date')
+    context = {
+        'cars':cars
+    }
+    return render(request, 'pages/cars.html', context)
