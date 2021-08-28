@@ -48,3 +48,5 @@ class CarAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Car, CarAdmin)
+
+admin.site.register(MoreCarImage)

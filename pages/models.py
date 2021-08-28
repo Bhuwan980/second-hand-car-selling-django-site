@@ -135,3 +135,9 @@ class Car(models.Model):
 
     def __str__(self):
         return self.car_title
+
+class MoreCarImage(models.Model):
+    photo_id = models.ForeignKey(Car, on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to='cars/images/')
+
+

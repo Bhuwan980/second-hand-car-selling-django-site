@@ -6,6 +6,7 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
     path('about/', about, name='about'),
     path('car/', car, name='car'),
-    path('car-detail/<int:id>/', cardetail, name='cardetail')
+    path('car-detail/<int:id>/', cardetail, name='cardetail'),
+    path('car/search/', Search, name='search')
 
 ]
