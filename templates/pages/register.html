@@ -1,9 +1,9 @@
 {% extends '../base.html' %}
-{% load static %}
+{% load static  %}
 
 
 {% block title %}
-User Login | Carzone
+User Registration | Carzone
 {% endblock %}
 
 {% block content %}
@@ -11,30 +11,28 @@ User Login | Carzone
 <div class="sub-banner overview-bgi">
     <div class="container breadcrumb-area">
         <div class="breadcrumb-areas">
-            <h1>Login To Your Account</h1>
+            <h1>Register new Account</h1>
             <ul class="breadcrumbs">
                 <li><a href="{% url 'home' %}">Home</a></li>
-                <li class="active">Login</li>
+                <li class="active">Register</li>
             </ul>
         </div>
     </div>
 </div>
-<!-- Sub Banner end -->
-
 <!-- Contact section start -->
 <div class="contact-section">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12 col-md-12">
                 <div class="form-section">
                     <div class="logo-2">
                         <a href="index.html">
                             <img src="{% static 'img/logos/black-logo.png' %}" alt="logo">
                         </a>
                     </div>
-                    <h3>Sign into your account</h3>
+                    <h3>Create an account</h3>
                     {% if messages %}
-                    {% for message in messages %}
+                    {% for message in messages%}
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         {{ message }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -44,29 +42,42 @@ User Login | Carzone
                     <form action="" method="POST">
                         {% csrf_token %}
                         <div class="form-group form-box">
+                            <input type="text" name="firstname" class="input-text" placeholder="First Name">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="form-group form-box">
+                            <input type="text" name="lastname" class="input-text" placeholder="Last Name">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="form-group form-box">
                             <input type="text" name="username" class="input-text" placeholder="Username" required>
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="form-group form-box">
+                            <input type="email" name="email" class="input-text" placeholder="Email Address" required>
                             <i class="flaticon-mail"></i>
                         </div>
                         <div class="form-group form-box">
                             <input type="password" name="password" class="input-text" placeholder="Password" required>
                             <i class="flaticon-lock"></i>
                         </div>
+                        <div class="form-group form-box">
+                            <input type="password" name="confirm_password" class="input-text" placeholder="Confirm Password" required>
+                            <i class="flaticon-lock"></i>
+                        </div>
                         <div class="form-group mb-0 clearfix">
-                            <button type="submit" class="btn-md btn-theme float-left">Login</button>
+                            <button type="submit" class="btn-md btn-theme float-left">Register</button>
                         </div>
                         <div class="extra-login clearfix">
                             <span>Or Login With</span>
                         </div>
                         <div class="clearfix"></div>
                         <ul class="social-list">
-                            <li><a href="#" class="facebook-bg"><i class="fa fa-facebook-square"></i></a></li>
-                            <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#" class="facebook-bg"><i class="fa fa-facebook facebook-i"></i><span>Facebook</span></a></li>
+                            <li><a href="#" class="google-bg"><i class="fa fa-google google-i"></i><span>Google</span></a></li>
                         </ul>
                     </form>
-                    <p>Don't have an account? <a href="{% url 'register' %}" style="color: red;"> Register here</a></p>
-
+                    <p>Already a member? <a href="{% url 'login' %}" style="color: red;"> Login here</a></p>
                     
                 </div>
             </div>

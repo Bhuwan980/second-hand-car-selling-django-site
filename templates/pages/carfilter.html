@@ -1,10 +1,6 @@
 {% extends '../base.html' %}
 {% load humanize %}
 
-{% block title %}
-Search result | Carzone
-{% endblock %}
-
 {% block content %}
 
 <!-- Banner start -->
@@ -123,7 +119,7 @@ Search result | Carzone
            
         </div>
         <div class="row">
-            {% for car in page_obj %}
+            {% for car in car_filter %}
             <div class="col-lg-4 col-md-6">
                 <div class="car-box">
                     <div class="car-thumbnail">
@@ -196,47 +192,7 @@ Search result | Carzone
 </div>
 <!-- Rent car end -->
 
-<!-- pagination start  -->
 
-                <!-- Pagination start start -->
-                <div class="pagination-box p-box-2 text-center">
-                    <nav aria-label="Page navigation example">
-                        {% if page_obj.has_other_pages %}
-                       
-                        <ul class="pagination">
-                            {% if page_obj.has_previous %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page=1 {% if request.GET.search_keyword %}&search_keyword={{ request.GET.search_keyword}}{% endif %}"><i class="fa fa-angle-left"></i></a>
-                            </li>
-                            {% else %}
-                            <li class="page-item disabled">
-                                <a class="page-link "><i class="fa fa-angle-left"></i></a>
-                            </li>
-                            {% endif %}
-
-                            {% for i in page_obj.paginator.page_range %}
-                            {% if page_obj.number == i%}
-                            <li class="page-item"><a class="page-link active" href="#">{{i}}</a></li>
-                            {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{i}}{% if request.GET.search_keyword %}&search_keyword={{ request.GET.search_keyword}}{% endif %}">{{i}}</a></li>
-                            {% endif %}
-                            {% endfor %}
-
-                            {% if page_obj.has_next %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{cars.paginator.num_pages}}{% if request.GET.search_keyword %}&search_keyword={{ request.GET.search_keyword}}{% endif %}"><i class="fa fa-angle-right"></i></a>
-                            </li>
-                            {% else %}
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
-                            </li>
-                            {% endif %}
-                        </ul>
-                        {% endif %}
-                    </nav>
-                </div>
-            </div>
-<!-- pagination end -->
 
 
 {% endblock %}

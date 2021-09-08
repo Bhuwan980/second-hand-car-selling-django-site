@@ -2,6 +2,10 @@
 {% load static %}
 {% load humanize %}
 
+{% block title %}
+Home | Carzone
+{% endblock %}
+
 {% block content %}
 <!-- Banner start -->
 <div class="banner" id="banner">
@@ -10,6 +14,17 @@
             <div class="carousel-item banner-max-height active item-bg">
                 <img class="d-block w-100 h-100" src="{% static 'img/car-1.jpg' %}" alt="banner">
                 <div class="carousel-content container banner-info-2 bi-2 text-left">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show"style="width: 30%" role="alert">
+                        
+                           <b style="color: red;">{{ message }}</b>
+                           
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                      {% endfor %}
+                      {% endif %}
+
                     <h3>Wow Factor Standard</h3>
                     <h5>Allow us to guide you through the innovative stress<br>
                         free approach in finding your dream car.</h5>
@@ -37,52 +52,40 @@
         </div>
         <!-- Search box 3 start -->
         <div class="search-box-4 sb-8">
-            <form action="#" method="">
+            <form action="{% url 'search' %}" method="">
                 <div class="form-group">
-                    <input type="text" name="keyword" placeholder="Search by name" class="form-control">
-                </div>
-                <div class="form-group">
-                    <select class="form-control search-fields" name="select-brand">
-                        <option selected="true" disabled="disabled">Brand</option>
-                        <option>Audi</option>
-                        <option>BMW</option>
-                        <option>Honda</option>
-                        <option>Nissan</option>
-                    </select>
+                    <input type="text" name="search_keyword" placeholder="Search by name" class="form-control">
                 </div>
                 <div class="form-group">
                     <select class="form-control search-fields" name="select-make">
                         <option selected="true" disabled="disabled">Model</option>
-                        <option>BMW</option>
-                        <option>Honda</option>
-                        <option>Lamborghini Huracán</option>
-                        <option>Sports Car</option>
+                        {% for model in model_search %}
+                        <option>{{model}}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="form-group">
                     <select class="form-control search-fields" name="select-location">
                         <option selected="true" disabled="disabled">Location</option>
-                        <option>United States</option>
-                        <option>United Kingdom</option>
+                        {% for city in city_search %}
+                        <option>{{city}}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="form-group">
                     <select class="form-control search-fields" name="select-year">
                         <option selected="true" disabled="disabled">Year</option>
-                        <option>2016</option>
-                        <option>2017</option>
-                        <option>2018</option>
-                        <option>2019</option>
+                        {% for year in year_search %}
+                        <option>{{year}}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="form-group">
                     <select class="form-control search-fields" name="select-type">
                         <option selected="true" disabled="disabled">Select Type Of Car</option>
-                        <option>Sedan</option>
-                        <option>Sports</option>
-                        <option>Hatchback</option>
-                        <option>Pickup Truck</option>
-                        <option>SUV</option>
+                       {% for body_style_search in body_style_search %}
+                       <option>{{ body_style_search}}</option>
+                       {% endfor %}
                     </select>
                 </div>
                 <div class="range-slider clearfix">
