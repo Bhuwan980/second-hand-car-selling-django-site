@@ -14,5 +14,7 @@ urlpatterns = [
     path('accounts/register/', Register, name='register'),
     
     path('accounts/logout/', Logout, name='logout'),
+    path('inquery/', Contacts, name='inquery')
+
 
 ]

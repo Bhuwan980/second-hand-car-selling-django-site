@@ -119,7 +119,6 @@ def Register(request):
         email = request.POST['email']
         password = request.POST['password']
         confirm_password = request.POST['confirm_password']
-        print(first_name, '____________________________')
         if password==confirm_password:
             if User.objects.filter(username=username).exists():
                 messages.info(request, 'Username is already exist!!')
@@ -140,3 +139,24 @@ def Register(request):
 def Logout(request):
     logout(request)
     return redirect('home')
+
+
+
+def Contacts(request):
+    if request.method=='POST':
+        first_name = request.POST['first_name']
+        car_id = request.POST['car_id']
+        last_name  = request.POST['last_name']
+        state = request.POST['state']
+        city = request.POST['city']
+        comments = request.POST['message']
+        user_id = request.POST['user_id']
+        car_title = request.POST['car_title']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        customer_need = request.POST['customer_need']
+
+        contact = Contact(first_name=first_name, car_id=car_id, last_name=last_name, state=state, city=city, comments=comments, user_id=user_id, car_title=car_title, email=email, phone=phone, customer_need=customer_need)
+        contact.save()
+        messages.info(request, 'Successfully send message!')
+        return redirect('/car-detail/'+car_id)

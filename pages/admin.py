@@ -50,3 +50,8 @@ class CarAdmin(admin.ModelAdmin):
 admin.site.register(Car, CarAdmin)
 
 admin.site.register(MoreCarImage)
+
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('first_name','email', 'state', 'customer_need' )
+
+admin.site.register(Contact, ContactAdmin)

@@ -141,3 +141,19 @@ class MoreCarImage(models.Model):
     photo = models.ImageField(upload_to='cars/images/')
 
 
+class Contact(models.Model):
+    first_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
+    customer_need = models.CharField(max_length=100)
+    comments = models.TextField()
+    car_title = models.TextField(max_length=100)
+    car_id = models.IntegerField()
+    city = models.CharField(max_length=20)
+    state = models.CharField(max_length=30)
+    email = models.EmailField()
+    phone = models.CharField(max_length=10)
+    user_id = models.IntegerField()
+    date_created  = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.first_name
